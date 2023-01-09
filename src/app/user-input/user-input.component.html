@@ -1,0 +1,55 @@
+<form [formGroup]="optinonsForm">
+
+  <mat-radio-group formControlName="camera" class="camera">
+    <h3 >Choose Camera</h3>
+    <mat-radio-button value="FHAZ">FHAZ</mat-radio-button>
+    <mat-radio-button value="RHAZ">RHAZ</mat-radio-button>
+    <mat-radio-button value="MAST">MAST</mat-radio-button>
+    <mat-radio-button value="CHEMCAM">CHEMCAM</mat-radio-button>
+    <mat-radio-button value="MAHLI">MAHLI</mat-radio-button>
+    <mat-radio-button value="MARDI">MARDI</mat-radio-button>
+    <mat-radio-button value="NAVCAM">NAVCAM</mat-radio-button>
+    <mat-radio-button value="PANCAM">PANCAM</mat-radio-button>
+    <mat-radio-button value="MINITES">MINITES</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-radio-group formControlName="rover" class="rover" *ngIf="this.optinonsForm.controls['camera'].value">
+    <h1>Choose Rover</h1>
+
+    <mat-radio-button value="Curiosity"
+    *ngIf="this.optinonsForm.controls['camera'].value !== 'PANCAM' &&
+    this.optinonsForm.controls['camera'].value !== 'MINITES'
+    "
+    >Curiosity</mat-radio-button>
+
+    <mat-radio-button value="Opportunity"
+    *ngIf="this.optinonsForm.controls['camera'].value !== 'MAST' &&
+    this.optinonsForm.controls['camera'].value !== 'CHEMCAM' &&
+    this.optinonsForm.controls['camera'].value !== 'MAHLI' &&
+    this.optinonsForm.controls['camera'].value !== 'MARDI'
+    "
+    >Opportunity</mat-radio-button>
+
+    <mat-radio-button value="Spirit"
+    *ngIf="this.optinonsForm.controls['camera'].value !== 'MAST' &&
+    this.optinonsForm.controls['camera'].value !== 'CHEMCAM' &&
+    this.optinonsForm.controls['camera'].value !== 'MAHLI' &&
+    this.optinonsForm.controls['camera'].value !== 'MARDI'
+    "
+    >Spirit</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-form-field class="example-full-width"
+   *ngIf="this.optinonsForm.controls['camera'].value &&
+    this.optinonsForm.controls['rover'].value">
+    <mat-label>Mars Day</mat-label>
+    <input matInput value="0" formControlName="marsDay" class="mars-day" type="number">
+  </mat-form-field>
+
+  <button mat-stroked-button color="primary" (click)="sendOptions()" class="sumbit"
+  *ngIf="this.optinonsForm.controls['camera'].value &&
+  this.optinonsForm.controls['rover'].value &&
+  this.optinonsForm.controls['marsDay'].value"
+  >Submit</button>
+</form>
+

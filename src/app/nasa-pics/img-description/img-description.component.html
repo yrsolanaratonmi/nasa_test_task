@@ -1,0 +1,11 @@
+<div class="container">
+  <img [src]="item.img_src"/>
+  <div  class="text__container">
+   <p>Camera: {{item.camera.full_name}} ({{item.camera.name}})</p>
+   <p>Shooting Date: {{item.earth_date}}</p>
+   <p>Rover: {{item.rover.name}}</p>
+   <p>Launch Date: {{item.rover.launch_date}}</p>
+   <p>Landing Date: {{item.rover.landing_date}}</p>
+   <p>Currently {{item.rover.status}}</p>
+  </div>
+</div>

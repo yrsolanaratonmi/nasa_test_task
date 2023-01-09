@@ -1,0 +1,17 @@
+<mat-spinner *ngIf="this.fetchingNasaService.loading" class="spinner"></mat-spinner>
+
+
+  <div class="container">
+    <div *ngFor="let item of (this.fetchingNasaService.data$ | async | slice : 0 : this.picsNumber);">
+      <app-img-description [item]="item"></app-img-description>
+     </div>
+  </div>
+  <div style="display: flex; justify-content: center;">
+    <button *ngIf="this.fetchingNasaService.data$ | async"
+    mat-raised-button color="primary"
+     (click)="decrementMore()"
+     >Load more</button>
+  </div>
+
+
+
